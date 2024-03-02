@@ -13,5 +13,6 @@ namespace SMS.Data
         }
 
         public DbSet<Student> Students { get; set; }
+        public DbSet<Guardian> Guardians { get; set; }
     }
 }

@@ -12,6 +12,9 @@ namespace SMS.Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public Province Province { get; set; }
-        public
+        public District District { get; set; }
+        public int StudentId { get; set; }
+        public Student Student { get; set; }
+
     }
 }

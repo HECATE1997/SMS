@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SMS.Data;
 using SMS.Models;
+using Serilog;
+using Serilog.Events;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,17 @@ builder.Services.AddIdentity<AppUser,IdentityRole>(
         options.Password.RequireUppercase = true;
 
     }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+var log = new LoggerConfiguration()
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+      .Filter.ByExcluding(logEvent =>
+                logEvent.MessageTemplate.Text.Contains("Application started") ||
+                logEvent.MessageTemplate.Text.Contains("Hosting environment") ||
+                logEvent.MessageTemplate.Text.Contains("Content root path"))
+    .CreateLogger();
+
 
 var app = builder.Build();
 

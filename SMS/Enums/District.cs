@@ -71,6 +71,26 @@
         Rupandehi = 58,
 
         //Karnali 
+        Dailekh = 59,
+        Dolpa = 60,
+        Humla = 61,
+        Jajarkot = 62,
+        Jumla = 63,
+        Kalikot = 64,
+        Mugu = 65,
+        RukumPaschim = 66,
+        Salyan = 67,
+        Surket = 68,
 
+        //Sudurpashchim
+        Achham= 69,
+        Baitadi = 70,
+        Bajhang = 71,
+        Bajura = 72,
+        Dadeldhura = 73,
+        Darchula = 74,
+        Doti = 75,
+        Kailali = 76,
+        Kanchanpur = 77,
     }
 }
