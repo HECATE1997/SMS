@@ -12,6 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("Default");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 builder.Services.AddDbContext<AppDbContext>(
     options=>options.UseSqlServer(connectionString));
 builder.Services.AddIdentity<AppUser,IdentityRole>(
@@ -25,7 +26,8 @@ builder.Services.AddIdentity<AppUser,IdentityRole>(
 
     }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-var log = new LoggerConfiguration()
+//Configuring Serilog as default logger
+Log.Logger= new LoggerConfiguration()
     .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
     .MinimumLevel.Information()
     .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
@@ -35,6 +37,8 @@ var log = new LoggerConfiguration()
                 logEvent.MessageTemplate.Text.Contains("Content root path"))
     .CreateLogger();
 
+builder.Host.UseSerilog();
+//End of configuration of serilog
 
 var app = builder.Build();
 
@@ -56,5 +60,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");
+    //pattern: "{Area=Patient}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
