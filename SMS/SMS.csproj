@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Student\Models\" />
+    <Folder Include="logs\" />
   </ItemGroup>
 
 </Project>

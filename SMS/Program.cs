@@ -58,8 +58,12 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "Area",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Account}/{action=Login}/{id?}");
-    //pattern: "{Area=Patient}/{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

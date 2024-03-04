@@ -7,6 +7,7 @@ using System;
 
 namespace SMS.Areas.Student.Controllers
 {
+    [Area("Student")]
     [Authorize]
     public class StudentController : Controller
     {
